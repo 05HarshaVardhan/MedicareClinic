@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Doctors - MedCare Clinic</title>
+  
+  <!-- FontAwesome Icons for offline-friendly UI elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Custom Stylesheet -->
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  
+  <!-- Accessibility feature: Skip to content -->
+ 
+
+  <!-- HEADER START -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
+      </a>
+      
+      <!-- Mobile Hamburger Menu (Checkbox Hack Target) -->
+      <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="doctors.html" class="nav-link active">Doctors</a></li>
+        <li><a href="bookAppointment.html" class="nav-link">Book Appointment</a></li>
+        <li><a href="contactUs.html" class="nav-link">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Light/Dark Mode Toggle -->
+        <button class="theme-toggle" aria-label="Toggle dark and light mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END -->
+
+  <!-- MAIN CONTENT (This is where the unique Doctors content will go) -->
+  <main id="main-content" class="container section-padding">
+    
+    <!-- We will add the Page Title, Search Bar, and Filters next! -->
+     <!-- Page Title -->
+    <div class="page-header">
+      <h1 class="section-title">Meet Our Medical Experts</h1>
+      <p class="section-subtitle">Browse through our multi-specialty practitioners and filter by name or specialty.</p>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="filters-container">
+      
+      <!-- Search Bar -->
+      <div class="search-box">
+        <label for="searchInput" class="sr-only">Search doctors</label>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by doctor name or specialty...">
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="specialty-filters">
+        <p class="filter-label">Filter by Specialty:</p>
+        <div id="specialtyChips" class="filter-chips">
+          <button class="chip active" data-specialty="All">All Specialties</button>
+          <button class="chip" data-specialty="Cardiology">Cardiology</button>
+          <button class="chip" data-specialty="Pediatrics">Pediatrics</button>
+          <button class="chip" data-specialty="Neurology">Neurology</button>
+          <button class="chip" data-specialty="Dermatology">Dermatology</button>
+          <button class="chip" data-specialty="Orthopedics">Orthopedics</button>
+          <button class="chip" data-specialty="Ophthalmology">Ophthalmology</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- The Grid where doctors will appear (We will add this next!) -->
+     <!-- Doctors Grid (This starts empty! JavaScript will inject the profiles here) -->
+    <div id="doctorsGrid" class="doctors-grid">
+      <!-- 
+        Our JavaScript will automatically create cards like this inside here:
+        <div class="doctor-card">
+           <img src="..." alt="Doctor Name">
+           <h3>Dr. Name</h3>
+           <p>Specialty</p>
+           ...
+        </div>
+      -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER (Same as Home Page) -->
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      
+      <!-- Column 1: About -->
+      <div class="footer-section">
+        <h3 class="footer-title">MedCare Clinic</h3>
+        <p>Providing compassionate, high-quality multi-specialty healthcare.</p>
+      </div>
+
+      <!-- Column 2: Links -->
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="bookAppointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Hours -->
+      <div class="footer-section">
+        <h3 class="footer-title">Working Hours</h3>
+        <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
+        <p>Sat - Sun: 9:00 AM - 5:00 PM</p>
+      </div>
+
+    </div>
+    
+    <!-- Copyright Bar -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

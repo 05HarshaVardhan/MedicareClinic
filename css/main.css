@@ -1,0 +1,767 @@
+/* =================================================================
+   MedCare Clinic - Master Stylesheet (Part 1: Tokens & Base)
+   ================================================================ */
+
+/* 1. DESIGN TOKENS (The Master Paint Buckets) */
+:root {
+  /* Color Palette (Light Mode) */
+  --color-primary: #0284c7;        /* Clinic Blue */
+  --color-primary-hover: #0369a1;
+  --color-secondary: #0d9488;      /* Teal */
+  --color-accent: #f59e0b;         /* Warm Orange */
+  --color-bg: #f8fafc;             /* Light Gray Background */
+  --color-surface: #ffffff;        /* Pure White for Cards */
+  --color-text: #1e293b;           /* Dark Slate for reading */
+  --color-text-muted: #64748b;
+  --color-border: #cbd5e1;
+  --color-error: #dc2626;          /* Form Error Red */
+
+  /* Typography (System Fonts for 100% Offline Support) */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+
+  /* Spacing & Layout */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
+}
+
+/* 2. DARK MODE TOKENS (Overrides the buckets if dark mode is on) */
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+}
+
+/* 3. BASE RESET (Smoothing the drywall) */
+*, *::before, *::after {
+  box-sizing: border-box; /* Ensures padding doesn't mess up our widths */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Makes clicking "Back to top" slide nicely */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 4. UTILITY CLASSES (Reusable helpers) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* Centers the content on large screens */
+  padding: 0 var(--space-4);
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+/* Accessibility Focus Ring (For keyboard navigation) */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* =================================================================
+   MedCare Clinic - Master Stylesheet (Part 2: Components)
+   ================================================================ */
+
+/* 5. TYPOGRAPHY & HEADING STYLES */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary); /* Use Primary color for headings */
+}
+
+/* Style Guide Typography Scale */
+.type-4xl { font-size: var(--font-size-4xl); }
+.type-3xl { font-size: var(--font-size-3xl); }
+.type-2xl { font-size: var(--font-size-2xl); }
+.type-base { font-size: var(--font-size-base); }
+
+.section-title {
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+}
+
+.page-header {
+  text-align: center;
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-8);
+}
+
+/* 6. BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+  border-color: var(--color-secondary);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* 7. HEADER & NAVIGATION */
+header {
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky; /* Keeps the header at the top when scrolling */
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+  background-color: rgba(2, 132, 199, 0.1);
+}
+
+/* Hamburger Menu (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* 8. FORMS */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+  position: relative; /* Important for error messages */
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2); /* Focus ring */
+}
+
+/* Hide error messages by default */
+.error-msg {
+  display: none;
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+}
+
+/* When a form-control has the .invalid class (added by JS), show the error */
+.form-control.invalid {
+  border-color: var(--color-error);
+}
+
+.form-control.invalid + .error-msg {
+  display: block;
+}
+
+.form-submit-btn {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+/* 9. FOOTER */
+/* =================================================================
+   UPDATED FOOTER STYLES
+   ================================================================ */
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+}
+
+/* Creates the side-by-side columns */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+  text-align: left; /* Fixes the weird centering in the image */
+}
+
+.footer-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* Removes the bullet points shown in the image */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: var(--space-2);
+}
+
+/* Fixes the default purple/blue underlined links */
+.footer-links a {
+  text-decoration: none;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+}
+
+
+/* =================================================================
+   MedCare Clinic - Master Stylesheet (Part 3: Page Layouts)
+   ================================================================ */
+
+/* 10. HOME PAGE: HERO SECTION */
+.hero {
+  background-color: var(--color-surface);
+  padding: var(--space-8) 0;
+}
+
+.hero-grid {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Dynamically scales text */
+  margin-bottom: var(--space-4);
+}
+
+.hero-content p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+/* 11. HOME PAGE: SPECIALTIES GRID */
+.specialties-grid {
+  display: grid;
+  /* The magic responsive grid formula! */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.specialty-card {
+  background-color: var(--color-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-border);
+}
+
+.specialty-card:hover {
+  transform: translateY(-5px); /* Creates a subtle lifting effect */
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.specialty-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+/* 12. HOME PAGE: TESTIMONIALS CAROUSEL */
+.testimonials-section {
+  background-color: var(--color-bg);
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden; /* Hides the cards that are off-screen */
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* The sliding animation */
+}
+
+.testimonial-card {
+  min-width: 100%; /* Forces each card to take up the full view */
+  text-align: center;
+  padding: 0 var(--space-4);
+}
+
+.testimonial-card p {
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  margin-bottom: var(--space-4);
+}
+
+.testimonial-author {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.carousel-btn {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: var(--color-primary);
+  transition: var(--transition);
+}
+
+.carousel-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* 13. HOME PAGE: CALL TO ACTION (CTA) */
+.cta-box {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  padding: var(--space-12);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.cta-title {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-4);
+  color: white; /* Overrides the primary color heading */
+}
+
+.cta-description {
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  font-size: var(--font-size-lg);
+}
+
+.btn-cta {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.btn-cta:hover {
+  background-color: var(--color-bg);
+}
+
+/* 14. DOCTORS PAGE: FILTERS & GRID */
+.filters-container {
+  margin-bottom: var(--space-8);
+}
+
+.search-box {
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-lg);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.chip {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50px; /* Pill shape */
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.chip:hover, .chip.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.doctor-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: transform 0.3s;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.doctor-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  background-color: var(--color-border); /* Placeholder color if image fails */
+}
+
+.doctor-info {
+  padding: var(--space-4);
+}
+
+.doctor-specialty {
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+/* 15. CONTACT PAGE: MAP & INFO */
+.contact-grid, .locator-container {
+  display: grid;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.svg-map-wrapper {
+  background-color: var(--color-surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+/* Styling our Interactive SVG Shapes */
+.svg-map path {
+  fill: var(--color-border);
+  stroke: var(--color-surface);
+  stroke-width: 2;
+  cursor: pointer;
+  transition: fill 0.3s ease, transform 0.2s ease;
+}
+
+/* Fix the default rectangular browser focus ring on SVG shapes */
+.svg-map path:focus-visible {
+  outline: none; /* Removes the ugly black box */
+  stroke: var(--color-accent); /* Uses our warm orange design token */
+  stroke-width: 4; /* Makes the border thicker when focused */
+}
+
+/* Fallback for browsers that don't fully support focus-visible on SVGs yet */
+.svg-map path:focus {
+  outline: none;
+}
+
+.svg-map path:hover {
+  fill: var(--color-primary-hover);
+}
+
+.svg-map path.active {
+  fill: var(--color-primary);
+}
+
+.branch-info-card, .general-info-box {
+  background-color: var(--color-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.branch-detail, .info-detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-lg);
+}
+
+.branch-detail i, .info-detail i {
+  color: var(--color-primary);
+  width: 20px;
+}
+
+/* STYLEGUIDE EXTRAS */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-8);}
+.color-swatch { padding: var(--space-4); border-radius: var(--radius-md); color: white; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,0.5);}
+.swatch-primary { background-color: var(--color-primary); }
+.swatch-secondary { background-color: var(--color-secondary); }
+.swatch-accent { background-color: var(--color-accent); }
+.swatch-surface { background-color: var(--color-surface); color: var(--color-text); text-shadow: none; border: 1px solid var(--color-border);}
+
+
+/* =================================================================
+   MedCare Clinic - Master Stylesheet (Part 4: Modals & Mobile)
+   ================================================================ */
+
+/* 16. MODALS (Success Pop-up for Bookings) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(4px); /* Blurs the website behind the pop-up */
+}
+
+/* When JS adds the 'active' class, the modal fades in! */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transform: translateY(20px); /* Starts slightly lower */
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0); /* Slides up into place smoothly */
+}
+
+.modal-icon {
+  font-size: 4rem;
+  color: var(--color-secondary); /* Teal success color */
+  margin-bottom: var(--space-4);
+}
+
+/* 17. MOBILE RESPONSIVENESS (Media Queries) */
+
+/* Rules for Mobile Phones and Small Tablets */
+@media (max-width: 768px) {
+  
+  /* Header & Navigation: Hide the standard links and show the Hamburger button */
+  .nav-menu {
+    display: none; 
+    flex-direction: column;
+    position: absolute;
+    top: 80px; /* Right below the header bar */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-surface);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-md);
+    gap: var(--space-4);
+  }
+
+  /* When JS adds the 'show' class, the mobile menu drops down */
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block; /* Turn on the hamburger icon! */
+  }
+
+  /* Hero Section: Stack the text on top of the image */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  /* Make buttons full-width so they are easy to tap with a thumb */
+  .hero-content .btn {
+    width: 100%;
+    margin-bottom: var(--space-2);
+  }
+
+  /* Contact Page Layouts: Stack the map on top of the info */
+  .contact-grid, .locator-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Shrink titles slightly so they don't get cut off on small screens */
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .section-padding {
+    padding: var(--space-8) 0;
+  }
+}
+
+/* Rules for Desktops and Large Screens */
+@media (min-width: 769px) {
+  /* Force a side-by-side 2-column layout on desktop for Contact/Locator */
+  .contact-grid, .locator-container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}

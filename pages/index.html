@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedCare Clinic - Multi-Specialty Healthcare</title>
+  <!-- FontAwesome Icons for UI elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  
+  <!-- Accessibility feature: Skip to content -->
+  
+  <!-- HEADER START -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
+      </a>
+      
+      <!-- Mobile Hamburger Menu (Checkbox Hack Target) -->
+      <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+        <li><a href="bookAppointment.html" class="nav-link">Book Appointment</a></li>
+        <li><a href="contactUs.html" class="nav-link">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Light/Dark Mode Toggle -->
+        <button class="theme-toggle" aria-label="Toggle dark and light mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END -->
+
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Exceptional Care, Advanced Medicine</h1>
+          <p>Welcome to MedCare Clinic, your boutique multi-specialty healthcare destination. Experience expert medical professionals, personalized care, and state-of-the-art facilities.</p>
+          <div style="display: flex; gap: 1rem;">
+            <a href="book-appointment.html" class="btn btn-primary">Book Appointment</a>
+            <a href="doctors.html" class="btn btn-outline">Meet Our Doctors</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Note: For full offline mode later, download this image to /assets/images/ -->
+          <img src="../assets/Healthcare-Building.png" alt="Modern doctor consultation room">
+        </div>
+      </div>
+    </section>
+
+    <!-- [Specialties Grid will go here] -->
+     <!-- Specialties Grid Section -->
+    <section class="section-padding container">
+      <h2 class="section-title">Our Specialties</h2>
+      <p class="section-subtitle">Comprehensive medical disciplines led by renowned specialists.</p>
+      
+      <!-- The Grid Container -->
+      <div class="specialties-grid">
+        
+        <!-- Card 1 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+          <h3>Cardiology</h3>
+          <p>Advanced heart care, diagnostics, and preventative cardiovascular treatment.</p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-child" aria-hidden="true"></i></div>
+          <h3>Pediatrics</h3>
+          <p>Nurturing healthcare for infants, children, and adolescents.</p>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+          <h3>Neurology</h3>
+          <p>Expert evaluation and management of neurological disorders and brain health.</p>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-spa" aria-hidden="true"></i></div>
+          <h3>Dermatology</h3>
+          <p>Comprehensive skin, hair, and nail care utilizing advanced treatments.</p>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-bone" aria-hidden="true"></i></div>
+          <h3>Orthopedics</h3>
+          <p>Joint replacement, sports injuries, and musculoskeletal care.</p>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="specialty-card">
+          <div class="specialty-icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
+          <h3>Ophthalmology</h3>
+          <p>Precision vision care, advanced diagnostics, and surgical eye treatments.</p>
+        </div>
+
+      </div>
+    </section>
+    <!-- [Testimonials will go here] -->
+     <!-- Testimonials Carousel Section -->
+    <section class="section-padding testimonials-section">
+      <div class="container">
+        <h2 class="section-title">Patient Testimonials</h2>
+        <p class="section-subtitle">Hear what our patients have to say about their care.</p>
+        
+        <!-- The visible frame of the carousel -->
+        <div class="carousel-container" aria-label="Patient testimonials carousel" tabindex="0">
+          
+          <!-- The Sliding Track (The Conveyor Belt) -->
+          <div class="carousel-track" id="testimonial-track">
+            
+            <div class="testimonial-card">
+              <p>"The doctors at MedCare Clinic took the time to listen and explain my treatment plan thoroughly. The facility is spotless and extremely welcoming."</p>
+              <div class="testimonial-author">- Sarah Jenkins</div>
+            </div>
+            
+            <div class="testimonial-card">
+              <p>"Booking an appointment online was seamless, and I didn't have to wait past my scheduled time. Truly outstanding pediatric care for my son."</p>
+              <div class="testimonial-author">- Michael Chang</div>
+            </div>
+            
+            <div class="testimonial-card">
+              <p>"Exceptional cardiology department. Dr. Reynolds provided world-class guidance that put my entire family at ease."</p>
+              <div class="testimonial-author">- Elena Rostova</div>
+            </div>
+
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="carousel-controls">
+            <button class="carousel-btn prev-btn" id="prev-testimonial" aria-label="Previous testimonial">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="carousel-btn next-btn" id="next-testimonial" aria-label="Next testimonial">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- [Call to Action will go here] -->
+     <!-- Call-to-Action (CTA) Section -->
+    <!-- Call-to-Action (CTA) Section -->
+    <section class="section-padding container">
+      <div class="cta-box">
+        <h2 class="cta-title">Ready to Prioritize Your Health?</h2>
+        <p class="cta-description">
+          Schedule your appointment today with one of our expert medical practitioners.
+        </p>
+        <a href="bookAppointment.html" class="btn btn-cta">Book Your Visit Now</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER START -->
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      
+      <!-- Column 1: About -->
+      <div class="footer-section">
+        <h3 class="footer-title">MedCare Clinic</h3>
+        <p>Providing compassionate, high-quality multi-specialty healthcare.</p>
+      </div>
+
+      <!-- Column 2: Links -->
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="bookAppointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Hours -->
+      <div class="footer-section">
+        <h3 class="footer-title">Working Hours</h3>
+        <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
+        <p>Sat - Sun: 9:00 AM - 5:00 PM</p>
+      </div>
+
+    </div>
+    
+    <!-- Copyright Bar -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- FOOTER END -->
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

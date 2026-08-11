@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - MedCare Clinic</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  
+  <!-- Accessibility feature: Skip to content -->
+  
+
+  <!-- HEADER START -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
+      </a>
+      
+      <!-- Mobile Hamburger Menu (Checkbox Hack Target) -->
+      <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+        <li><a href="bookAppointment.html" class="nav-link">Book Appointment</a></li>
+        <li><a href="contactUs.html" class="nav-link active">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Light/Dark Mode Toggle -->
+        <button class="theme-toggle" aria-label="Toggle dark and light mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END -->
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="container section-padding">
+    
+    <div class="page-header">
+      <h1 class="section-title">Get in Touch & Clinic Locator</h1>
+      <p class="section-subtitle">Explore our branches using the interactive map or send us a direct message.</p>
+    </div>
+
+    <!-- The Interactive Map Section (We will add this next!) -->
+    <!-- 1. Interactive SVG Clinic Locator Section -->
+    <section class="locator-section">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Our Clinic Branches</h2>
+      
+      <div class="locator-container">
+        
+        <!-- The SVG Map -->
+        <div class="svg-map-wrapper">
+          <!-- The viewBox acts as the canvas size for our drawing -->
+          <svg class="svg-map" viewBox="0 0 400 300" width="100%" height="auto" aria-label="Clinic Locator Map">
+            <!-- 
+              Each <path> is a clickable region.
+              Notice the data-branch attributes! 
+            -->
+            <path id="branch-downtown" data-branch="downtown" d="M 50 50 L 180 40 L 190 160 L 40 150 Z" class="active" tabindex="0" aria-label="Downtown Branch"/>
+            <path id="branch-north" data-branch="north" d="M 190 30 L 350 40 L 360 150 L 190 150 Z" tabindex="0" aria-label="North Medical Hub"/>
+            <path id="branch-west" data-branch="west" d="M 40 170 L 190 170 L 200 280 L 50 270 Z" tabindex="0" aria-label="Westside Care Center"/>
+          </svg>
+          <p class="map-hint">Click a region on the map to view branch details.</p>
+        </div>
+
+        <!-- The Branch Information Card (Changes when map is clicked) -->
+        <div class="branch-info-card">
+          <h3 id="branchTitle" class="branch-title">Downtown Flagship Clinic</h3>
+          <p id="branchAddress" class="branch-detail"><i class="fas fa-map-marker-alt"></i> 123 Healthcare Avenue, Medical District</p>
+          <p id="branchPhone" class="branch-detail"><i class="fas fa-phone"></i> +1 (555) 234-5678</p>
+          <p id="branchHours" class="branch-detail"><i class="fas fa-clock"></i> Mon-Sun: 8:00 AM - 8:00 PM</p>
+          <a href="bookAppointment.html" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Book at this Branch</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. Contact Form & General Info Section -->
+    <section class="contact-grid">
+      
+      <!-- General Info Box -->
+      <div class="general-info-box">
+        <h3 class="info-title">General Inquiries</h3>
+        <p class="info-detail"><i class="fas fa-envelope"></i> contact@medcareclinic.com</p>
+        <p class="info-detail"><i class="fas fa-headset"></i> 24/7 Patient Support Line available for registered clinic members.</p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="form-container" style="margin: 0; max-width: 100%;">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-control" required placeholder="Full Name">
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Your Email</label>
+            <input type="email" id="contactEmail" class="form-control" required placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="form-control" rows="4" required placeholder="How can we help you?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit-btn">Send Message</button>
+        </form>
+      </div>
+      
+    </section>
+    <!-- The Contact Form Section (We will add this next!) -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      
+      <!-- Column 1: About -->
+      <div class="footer-section">
+        <h3 class="footer-title">MedCare Clinic</h3>
+        <p>Providing compassionate, high-quality multi-specialty healthcare.</p>
+      </div>
+
+      <!-- Column 2: Links -->
+      <div class="footer-section">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="bookAppointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Hours -->
+      <div class="footer-section">
+        <h3 class="footer-title">Working Hours</h3>
+        <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
+        <p>Sat - Sun: 9:00 AM - 5:00 PM</p>
+      </div>
+
+    </div>
+    
+    <!-- Copyright Bar -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

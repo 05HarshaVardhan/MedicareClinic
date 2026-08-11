@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide - MedCare Clinic</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
+      </a>
+      
+      <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="doctors.html" class="nav-link">Doctors</a>
+        <a href="book-appointment.html" class="nav-link">Book Appointment</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
+        <!-- Added a special link just for this page -->
+        <a href="styleguide.html" class="nav-link active">Style Guide</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle dark and light mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="container section-padding">
+    
+    <div class="page-header">
+      <h1 class="section-title">Design Token & Component Style Guide</h1>
+      <p class="section-subtitle">Comprehensive showcase of MedCare Clinic design tokens, typography, and interactive components.</p>
+    </div>
+
+    <!-- 1. Color Palette Showcase -->
+    <section class="styleguide-section">
+      <h2 class="styleguide-heading">Color Tokens</h2>
+      <div class="color-grid">
+        <!-- These will be styled in our CSS to physically show the colors -->
+        <div class="color-swatch swatch-primary">Primary<br><code>var(--color-primary)</code></div>
+        <div class="color-swatch swatch-secondary">Secondary<br><code>var(--color-secondary)</code></div>
+        <div class="color-swatch swatch-accent">Accent<br><code>var(--color-accent)</code></div>
+        <div class="color-swatch swatch-surface">Surface<br><code>var(--color-surface)</code></div>
+      </div>
+    </section>
+
+    <!-- 2. Typography Showcase -->
+    <section class="styleguide-section">
+      <h2 class="styleguide-heading">Typography Scale</h2>
+      <div class="typography-showcase">
+        <h1 class="type-4xl">Heading 4XL - For Main Hero text</h1>
+        <h2 class="type-3xl">Heading 3XL - For Section Titles</h2>
+        <h3 class="type-2xl">Heading 2XL - For Card Titles</h3>
+        <p class="type-base">Body Base - Standard paragraph text used across the clinic portal for clear legibility and WCAG 2.1 AA compliance.</p>
+      </div>
+    </section>
+
+    <!-- 3. Buttons Showcase -->
+    <section class="styleguide-section">
+      <h2 class="styleguide-heading">Button Components</h2>
+      <div class="button-showcase">
+        <button class="btn btn-primary">Primary Button</button>
+        <button class="btn btn-secondary">Secondary Button</button>
+        <button class="btn btn-outline">Outline Button</button>
+      </div>
+    </section>
+
+    <!-- 4. Form Controls Showcase -->
+    <section class="styleguide-section">
+      <h2 class="styleguide-heading">Form Elements</h2>
+      <div class="form-showcase">
+        <div class="form-group">
+          <label>Sample Input Field</label>
+          <input type="text" class="form-control" placeholder="Placeholder text...">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
