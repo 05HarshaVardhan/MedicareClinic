@@ -45,7 +45,7 @@ function renderDoctors(docsToRender) {
       <div class="doctor-info">
         <span class="doctor-specialty">${doc.specialty}</span>
         <h3 class="type-2xl" style="margin-bottom: 0.5rem;">${doc.name}</h3>
-        <a href="book-appointment.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Book Session</a>
+        <a href="bookAppointment.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Book Session</a>
       </div>
     `;
     doctorsGrid.appendChild(card);
