@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MedCare Clinic - Multi-Specialty Healthcare</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
   <!-- FontAwesome Icons for UI elements -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -32,10 +34,18 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Light/Dark Mode Toggle -->
-        <button class="theme-toggle" aria-label="Toggle dark and light mode">
-          <i class="fas fa-moon" aria-hidden="true"></i>
-        </button>
+        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
+        <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
+          <div class="theme-slider" aria-hidden="true"></div>
+          <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <span>Light</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-val="dark" role="radio" aria-checked="false" aria-label="Dark theme">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -55,14 +65,12 @@
           </div>
         </div>
         <div class="hero-image">
-          <!-- Note: For full offline mode later, download this image to /assets/images/ -->
-          <img src="assets/Healthcare-Building.png" alt="Modern doctor consultation room">
+          <img src="assets/Healthcare-Building.webp" alt="Modern doctor consultation room" loading="eager" fetchpriority="high">
         </div>
       </div>
     </section>
 
-    <!-- [Specialties Grid will go here] -->
-     <!-- Specialties Grid Section -->
+    <!-- Specialties Grid Section -->
     <section class="section-padding container">
       <h2 class="section-title">Our Specialties</h2>
       <p class="section-subtitle">Comprehensive medical disciplines led by renowned specialists.</p>
@@ -114,37 +122,48 @@
 
       </div>
     </section>
-    <!-- [Testimonials will go here] -->
-     <!-- Testimonials Carousel Section -->
+
+    <!-- Patient Testimonials Carousel Section -->
     <section class="section-padding testimonials-section">
       <div class="container">
         <h2 class="section-title">Patient Testimonials</h2>
-        <p class="section-subtitle">Hear what our patients have to say about their care.</p>
+        <p class="section-subtitle">Hear what our patients have to say about their care experience.</p>
         
-        <!-- The visible frame of the carousel -->
         <div class="carousel-container" aria-label="Patient testimonials carousel" tabindex="0">
-          
-          <!-- The Sliding Track (The Conveyor Belt) -->
           <div class="carousel-track" id="testimonial-track">
             
             <div class="testimonial-card">
-              <p>"The doctors at MedCare Clinic took the time to listen and explain my treatment plan thoroughly. The facility is spotless and extremely welcoming."</p>
-              <div class="testimonial-author">- Sarah Jenkins</div>
+              <p>"Booking my appointment online was simple, and the clinic team kept everything on schedule. The whole visit felt calm and organized."</p>
+              <div class="testimonial-author">- Meera Iyer</div>
             </div>
             
             <div class="testimonial-card">
-              <p>"Booking an appointment online was seamless, and I didn't have to wait past my scheduled time. Truly outstanding pediatric care for my son."</p>
-              <div class="testimonial-author">- Michael Chang</div>
+              <p>"The reception team was helpful from the moment we arrived. The waiting area was clean, comfortable, and easy for my family."</p>
+              <div class="testimonial-author">- Rohan Desai</div>
             </div>
             
             <div class="testimonial-card">
-              <p>"Exceptional cardiology department. Dr. Reynolds provided world-class guidance that put my entire family at ease."</p>
-              <div class="testimonial-author">- Elena Rostova</div>
+              <p>"I appreciated how quickly my reports were handled and explained. The follow-up reminders made the process stress-free."</p>
+              <div class="testimonial-author">- Kavita Menon</div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>"My daughter's consultation was smooth, and the staff made her feel comfortable throughout the visit."</p>
+              <div class="testimonial-author">- Sneha Kulkarni</div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>"The clinic was well maintained, the appointment process was clear, and I received timely updates after my visit."</p>
+              <div class="testimonial-author">- Nikhil Verma</div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>"From registration to follow-up guidance, every step was handled politely and efficiently. I felt well cared for."</p>
+              <div class="testimonial-author">- Lakshmi Rao</div>
             </div>
 
           </div>
           
-          <!-- Navigation Buttons -->
           <div class="carousel-controls">
             <button class="carousel-btn prev-btn" id="prev-testimonial" aria-label="Previous testimonial">
               <i class="fas fa-chevron-left" aria-hidden="true"></i>
@@ -158,8 +177,6 @@
       </div>
     </section>
 
-    <!-- [Call to Action will go here] -->
-     <!-- Call-to-Action (CTA) Section -->
     <!-- Call-to-Action (CTA) Section -->
     <section class="section-padding container">
       <div class="cta-box">
@@ -173,7 +190,6 @@
 
   </main>
 
-  <!-- FOOTER START -->
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -208,7 +224,6 @@
       <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
     </div>
   </footer>
-  <!-- FOOTER END -->
 
   <script src="js/main.js"></script>
 </body>

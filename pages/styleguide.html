@@ -26,14 +26,22 @@
         <a href="doctors.html" class="nav-link">Doctors</a>
         <a href="bookAppointment.html" class="nav-link">Book Appointment</a>
         <a href="contactUs.html" class="nav-link">Contact Us</a>
-        <!-- Added a special link just for this page -->
         <a href="styleguide.html" class="nav-link active">Style Guide</a>
       </nav>
 
       <div class="nav-actions">
-        <button class="theme-toggle" aria-label="Toggle dark and light mode">
-          <i class="fas fa-moon" aria-hidden="true"></i>
-        </button>
+        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
+        <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
+          <div class="theme-slider" aria-hidden="true"></div>
+          <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <span>Light</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-val="dark" role="radio" aria-checked="false" aria-label="Dark theme">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -50,7 +58,6 @@
     <section class="styleguide-section">
       <h2 class="styleguide-heading">Color Tokens</h2>
       <div class="color-grid">
-        <!-- These will be styled in our CSS to physically show the colors -->
         <div class="color-swatch swatch-primary">Primary<br><code>var(--color-primary)</code></div>
         <div class="color-swatch swatch-secondary">Secondary<br><code>var(--color-secondary)</code></div>
         <div class="color-swatch swatch-accent">Accent<br><code>var(--color-accent)</code></div>

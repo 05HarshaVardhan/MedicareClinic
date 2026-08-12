@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Doctors - MedCare Clinic</title>
   
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
   <!-- FontAwesome Icons for offline-friendly UI elements -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -14,7 +16,6 @@
 <body>
   
   <!-- Accessibility feature: Skip to content -->
- 
 
   <!-- HEADER START -->
   <header>
@@ -36,20 +37,27 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Light/Dark Mode Toggle -->
-        <button class="theme-toggle" aria-label="Toggle dark and light mode">
-          <i class="fas fa-moon" aria-hidden="true"></i>
-        </button>
+        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
+        <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
+          <div class="theme-slider" aria-hidden="true"></div>
+          <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <span>Light</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-val="dark" role="radio" aria-checked="false" aria-label="Dark theme">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
   <!-- HEADER END -->
 
-  <!-- MAIN CONTENT (This is where the unique Doctors content will go) -->
+  <!-- MAIN CONTENT -->
   <main id="main-content" class="container section-padding">
     
-    <!-- We will add the Page Title, Search Bar, and Filters next! -->
-     <!-- Page Title -->
+    <!-- Page Title -->
     <div class="page-header">
       <h1 class="section-title">Meet Our Medical Experts</h1>
       <p class="section-subtitle">Browse through our multi-specialty practitioners and filter by name or specialty.</p>
@@ -80,23 +88,12 @@
 
     </div>
 
-    <!-- The Grid where doctors will appear (We will add this next!) -->
-     <!-- Doctors Grid (This starts empty! JavaScript will inject the profiles here) -->
+    <!-- Doctors Grid -->
     <div id="doctorsGrid" class="doctors-grid">
-      <!-- 
-        Our JavaScript will automatically create cards like this inside here:
-        <div class="doctor-card">
-           <img src="..." alt="Doctor Name">
-           <h3>Dr. Name</h3>
-           <p>Specialty</p>
-           ...
-        </div>
-      -->
     </div>
 
   </main>
 
-  <!-- FOOTER (Same as Home Page) -->
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">

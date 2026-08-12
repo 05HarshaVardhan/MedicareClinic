@@ -11,7 +11,6 @@
 <body>
   
   <!-- Accessibility feature: Skip to content -->
-  
 
   <!-- HEADER START -->
   <header>
@@ -33,10 +32,18 @@
       </ul>
 
       <div class="nav-actions">
-        <!-- Light/Dark Mode Toggle -->
-        <button class="theme-toggle" aria-label="Toggle dark and light mode">
-          <i class="fas fa-moon" aria-hidden="true"></i>
-        </button>
+        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
+        <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
+          <div class="theme-slider" aria-hidden="true"></div>
+          <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
+            <i class="fas fa-sun" aria-hidden="true"></i>
+            <span>Light</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-val="dark" role="radio" aria-checked="false" aria-label="Dark theme">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -50,7 +57,6 @@
       <p class="section-subtitle">Explore our branches using the interactive map or send us a direct message.</p>
     </div>
 
-    <!-- The Interactive Map Section (We will add this next!) -->
     <!-- 1. Interactive SVG Clinic Locator Section -->
     <section class="locator-section">
       <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Our Clinic Branches</h2>
@@ -59,12 +65,7 @@
         
         <!-- The SVG Map -->
         <div class="svg-map-wrapper">
-          <!-- The viewBox acts as the canvas size for our drawing -->
           <svg class="svg-map" viewBox="0 0 400 300" width="100%" height="auto" aria-label="Clinic Locator Map">
-            <!-- 
-              Each <path> is a clickable region.
-              Notice the data-branch attributes! 
-            -->
             <path id="branch-downtown" data-branch="downtown" d="M 50 50 L 180 40 L 190 160 L 40 150 Z" class="active" tabindex="0" aria-label="Downtown Branch"/>
             <path id="branch-north" data-branch="north" d="M 190 30 L 350 40 L 360 150 L 190 150 Z" tabindex="0" aria-label="North Medical Hub"/>
             <path id="branch-west" data-branch="west" d="M 40 170 L 190 170 L 200 280 L 50 270 Z" tabindex="0" aria-label="Westside Care Center"/>
@@ -114,11 +115,9 @@
       </div>
       
     </section>
-    <!-- The Contact Form Section (We will add this next!) -->
 
   </main>
 
-  <!-- FOOTER -->
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
