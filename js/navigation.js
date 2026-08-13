@@ -6,11 +6,30 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
+function closeNavMenu() {
+  if (navMenu && hamburger && navMenu.classList.contains('show')) {
+    navMenu.classList.remove('show');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.focus();
+  }
+}
+
 if (hamburger && navMenu) {
   hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', !isExpanded);
+    const isShow = navMenu.classList.toggle('show');
+    hamburger.setAttribute('aria-expanded', isShow ? 'true' : 'false');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('show')) {
+      closeNavMenu();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('show') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeNavMenu();
+    }
   });
 }
 

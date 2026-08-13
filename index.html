@@ -13,7 +13,8 @@
 <body>
   
   <!-- Accessibility feature: Skip to content -->
-  
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- HEADER START -->
   <header>
     <div class="container nav-container">
@@ -129,8 +130,8 @@
         <h2 class="section-title">Patient Testimonials</h2>
         <p class="section-subtitle">Hear what our patients have to say about their care experience.</p>
         
-        <div class="carousel-container" aria-label="Patient testimonials carousel" tabindex="0">
-          <div class="carousel-track" id="testimonial-track">
+        <div class="carousel-container" role="region" aria-roledescription="carousel" aria-label="Patient testimonials carousel" tabindex="0">
+          <div class="carousel-track" id="testimonial-track" aria-live="polite">
             
             <div class="testimonial-card">
               <p>"Booking my appointment online was simple, and the clinic team kept everything on schedule. The whole visit felt calm and organized."</p>

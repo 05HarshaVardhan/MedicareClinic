@@ -77,6 +77,11 @@
   padding: var(--space-8);
 }
 
+.carousel-container:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
