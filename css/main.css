@@ -1,7 +1,3 @@
-/* =================================================================
-   MedCare Clinic - Master Stylesheet (Modular Imports)
-   ================================================================ */
-
 @import 'tokens.css';
 @import 'components.css';
 @import 'pages.css';

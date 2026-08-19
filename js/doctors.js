@@ -1,10 +1,6 @@
-/* =================================================================
-   MedCare Clinic - Doctors Module (Data & Directory Renderer)
-   ================================================================ */
-
 function createAvatarUrl(name) {
   const displayName = name.replace(/^Dr\.\s*/, '');
-  return `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0284c7&color=fff&size=250&bold=true`;
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=0369a1&color=fff&size=250&bold=true`;
 }
 
 var doctors = [
@@ -22,6 +18,12 @@ var doctors = [
   { name: "Dr. Aisha Khan", specialty: "Ophthalmology", experience: "9+ years experience", availableDays: ["Wednesday", "Thursday", "Saturday"], img: "aisha.webp" }
 ];
 
+function createLqipUrl(name) {
+  const initials = name.replace(/^Dr\.\s*/, '').split(' ').map(n => n[0]).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" fill="#0369a1"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">${initials}</text></svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
 function renderDoctors(docsToRender) {
   const doctorsGrid = document.getElementById('doctorsGrid');
   if (!doctorsGrid) return; 
@@ -33,10 +35,11 @@ function renderDoctors(docsToRender) {
     return;
   }
 
-  docsToRender.forEach(doc => {
+  docsToRender.forEach((doc, index) => {
     const card = document.createElement('div');
     card.className = 'doctor-card';
     const avatarUrl = createAvatarUrl(doc.name);
+    const lqipUrl = createLqipUrl(doc.name);
     
     let imageSrc = avatarUrl;
     if (doc.img) {
@@ -47,18 +50,26 @@ function renderDoctors(docsToRender) {
     
     const availableDaysText = doc.availableDays.join(', ');
     
+    const imgHtml = index < 3 ? 
+      `<img src="${imageSrc}" width="300" height="250" alt="${doc.name}" class="doctor-img" decoding="async" loading="eager" ${index === 0 ? 'fetchpriority="high"' : ''} onerror="this.onerror=null; this.src='${avatarUrl}';">` :
+      `<img src="${lqipUrl}" data-src="${imageSrc}" width="300" height="250" alt="${doc.name}" class="doctor-img lazy-img" decoding="async" onerror="this.onerror=null; this.src='${avatarUrl}'; this.classList.add('loaded');">`;
+
     card.innerHTML = `
-      <img src="${imageSrc}" alt="${doc.name}" class="doctor-img" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${avatarUrl}'">
+      ${imgHtml}
       <div class="doctor-info">
         <span class="doctor-specialty">${doc.specialty}</span>
         <h3 class="type-2xl" style="margin-bottom: 0.5rem;">${doc.name}</h3>
         <p class="doctor-experience"><i class="fas fa-user-md" aria-hidden="true"></i> ${doc.experience}</p>
         <p class="doctor-availability"><i class="fas fa-calendar-days" aria-hidden="true"></i> Available: ${availableDaysText}</p>
-        <a href="bookAppointment.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Book Session</a>
+        <a href="/pages/bookAppointment.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Book Session</a>
       </div>
     `;
     doctorsGrid.appendChild(card);
   });
+
+  if (typeof window.initLazyLoading === 'function') {
+    window.initLazyLoading();
+  }
 }
 
 function handleSearchAndFilter() {
@@ -67,18 +78,66 @@ function handleSearchAndFilter() {
 
   const searchInput = document.getElementById('searchInput');
   const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-  const activeChips = document.querySelectorAll('.chip.active');
-  const activeSpecialties = Array.from(activeChips).map(chip => chip.getAttribute('data-specialty'));
+  
+  const activeSpecialtyChips = document.querySelectorAll('#specialtyChips .chip.active');
+  const activeSpecialties = Array.from(activeSpecialtyChips).map(chip => chip.getAttribute('data-specialty')).filter(Boolean);
+
+  const activeDayChips = document.querySelectorAll('#dayChips .chip.active');
+  const activeDays = Array.from(activeDayChips).map(chip => chip.getAttribute('data-day')).filter(Boolean);
 
   const filteredDoctors = doctors.filter(doc => {
     const availableDaysText = doc.availableDays.join(' ').toLowerCase();
-    const matchesSearch = doc.name.toLowerCase().includes(searchTerm) || doc.specialty.toLowerCase().includes(searchTerm) || doc.experience.toLowerCase().includes(searchTerm) || availableDaysText.includes(searchTerm);
-    const matchesSpecialty = activeSpecialties.includes('All') || activeSpecialties.length === 0 || activeSpecialties.includes(doc.specialty);
     
-    return matchesSearch && matchesSpecialty;
+    const matchesSearch = doc.name.toLowerCase().includes(searchTerm) || 
+                          doc.specialty.toLowerCase().includes(searchTerm) || 
+                          doc.experience.toLowerCase().includes(searchTerm) || 
+                          availableDaysText.includes(searchTerm);
+                          
+    const matchesSpecialty = activeSpecialties.includes('All') || 
+                             activeSpecialties.length === 0 || 
+                             activeSpecialties.includes(doc.specialty);
+
+    const matchesDay = activeDays.includes('All') || 
+                       activeDays.length === 0 || 
+                       doc.availableDays.some(day => activeDays.includes(day));
+    
+    return matchesSearch && matchesSpecialty && matchesDay;
   });
 
   renderDoctors(filteredDoctors);
+}
+
+function bindChipGroup(containerSelector, attributeName) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+
+  const chips = container.querySelectorAll('.chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      const clickedVal = e.target.getAttribute(attributeName);
+      
+      if (clickedVal === 'All') {
+        chips.forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+      } else {
+        e.target.classList.toggle('active');
+        
+        const allChip = container.querySelector(`.chip[${attributeName}="All"]`);
+        if (allChip) allChip.classList.remove('active');
+        
+        const currentlyActive = container.querySelectorAll('.chip.active');
+        if (currentlyActive.length === 0 && allChip) {
+          allChip.classList.add('active');
+        }
+      }
+      
+      chips.forEach(c => {
+        c.setAttribute('aria-pressed', c.classList.contains('active') ? 'true' : 'false');
+      });
+
+      handleSearchAndFilter();
+    });
+  });
 }
 
 function initDoctorsModule() {
@@ -92,32 +151,11 @@ function initDoctorsModule() {
     searchInput.addEventListener('input', handleSearchAndFilter);
   }
 
-  const specialtyChips = document.querySelectorAll('.chip');
-  if (specialtyChips.length > 0) {
-    specialtyChips.forEach(chip => {
-      chip.addEventListener('click', (e) => {
-        const clickedSpecialty = e.target.getAttribute('data-specialty');
-        
-        if (clickedSpecialty === 'All') {
-          specialtyChips.forEach(c => c.classList.remove('active'));
-          e.target.classList.add('active');
-        } else {
-          e.target.classList.toggle('active');
-          
-          const allChip = document.querySelector('.chip[data-specialty="All"]');
-          if (allChip) allChip.classList.remove('active');
-          
-          const currentlyActive = document.querySelectorAll('.chip.active');
-          if (currentlyActive.length === 0 && allChip) {
-            allChip.classList.add('active');
-          }
-        }
-        
-        handleSearchAndFilter();
-      });
-    });
-  }
+  bindChipGroup('#specialtyChips', 'data-specialty');
+  bindChipGroup('#dayChips', 'data-day');
 }
+
+window.initDoctorsModule = initDoctorsModule;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initDoctorsModule);

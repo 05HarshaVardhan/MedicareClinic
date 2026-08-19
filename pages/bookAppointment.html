@@ -4,36 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Appointment - MedCare Clinic</title>
+  <meta name="description" content="Schedule an appointment online with MedCare Clinic's expert doctors. Select your specialist, date, and preferred time slot easily.">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
   
-  <!-- Accessibility feature: Skip to content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- HEADER START -->
   <header>
     <div class="container nav-container">
-      <a href="../index.html" class="logo">
+      <a href="/index.html" class="logo">
         <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
       </a>
       
-      <!-- Mobile Hamburger Menu (Checkbox Hack Target) -->
       <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <i class="fas fa-bars" aria-hidden="true"></i>
       </button>
 
       <ul class="nav-menu">
-        <li><a href="../index.html" class="nav-link">Home</a></li>
-        <li><a href="doctors.html" class="nav-link">Doctors</a></li>
-        <li><a href="bookAppointment.html" class="nav-link active">Book Appointment</a></li>
-        <li><a href="contactUs.html" class="nav-link">Contact Us</a></li>
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/pages/doctors.html" class="nav-link">Doctors</a></li>
+        <li><a href="/pages/bookAppointment.html" class="nav-link active">Book Appointment</a></li>
+        <li><a href="/pages/contactUs.html" class="nav-link">Contact Us</a></li>
       </ul>
 
       <div class="nav-actions">
-        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
         <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
           <div class="theme-slider" aria-hidden="true"></div>
           <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
@@ -48,9 +45,7 @@
       </div>
     </div>
   </header>
-  <!-- HEADER END -->
 
-  <!-- MAIN CONTENT -->
   <main id="main-content" class="container section-padding">
     
     <div class="page-header">
@@ -58,70 +53,66 @@
       <p class="section-subtitle">Fill out the form below to secure your consultation slot with our specialists.</p>
     </div>
     <div class="form-container">
-      <!-- Notice the 'novalidate' attribute! -->
       <form id="appointmentForm" novalidate>
         
         <div class="form-group">
           <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" class="form-control" required minlength="3" placeholder="e.g. John Doe">
-          <span class="error-msg">Please enter a valid full name (at least 3 characters).</span>
+          <input type="text" id="fullName" name="fullName" class="form-control" required minlength="3" placeholder="e.g. John Doe" aria-describedby="fullName-error" aria-invalid="false">
+          <span id="fullName-error" class="error-msg">Please enter a valid full name (at least 3 characters).</span>
         </div>
 
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" required placeholder="e.g. john@example.com">
-          <span class="error-msg">Please enter a valid email address.</span>
+          <input type="email" id="email" name="email" class="form-control" required placeholder="e.g. john@example.com" aria-describedby="email-error" aria-invalid="false">
+          <span id="email-error" class="error-msg">Please enter a valid email address.</span>
         </div>
 
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <!-- The pattern attribute uses regular expressions to enforce exactly 10 digits -->
-          <input type="tel" id="phone" name="phone" class="form-control" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
-          <span class="error-msg">Please enter a valid 10-digit phone number.</span>
+          <input type="tel" id="phone" name="phone" class="form-control" required pattern="[0-9]{10}" placeholder="10-digit mobile number" aria-describedby="phone-error" aria-invalid="false">
+          <span id="phone-error" class="error-msg">Please enter a valid 10-digit phone number.</span>
         </div>
 
         <div class="form-group">
           <label for="doctorSelect">Select Doctor</label>
-          <!-- This starts empty! Our JavaScript will automatically fill this with our 12 doctors later -->
-          <select id="doctorSelect" name="doctor" class="form-control" required>
+          <select id="doctorSelect" name="doctor" class="form-control" required aria-describedby="doctorSelect-error" aria-invalid="false">
             <option value="">-- Choose a Doctor --</option>
           </select>
-          <span class="error-msg">Please select a doctor.</span>
+          <span id="doctorSelect-error" class="error-msg">Please select a doctor.</span>
         </div>
 
         <div class="form-group">
           <label for="date">Appointment Date</label>
-          <input type="date" id="date" name="date" class="form-control" required>
-          <span class="error-msg">Please select a valid date.</span>
+          <input type="date" id="date" name="date" class="form-control" required aria-describedby="date-error" aria-invalid="false">
+          <span id="date-error" class="error-msg">Please select a valid date.</span>
         </div>
 
         <div class="form-group">
           <label for="timeSlot">Time Slot</label>
-          <select id="timeSlot" name="timeSlot" class="form-control" required>
+          <select id="timeSlot" name="timeSlot" class="form-control" required aria-describedby="timeSlot-error" aria-invalid="false">
             <option value="">-- Select Time Slot --</option>
             <option value="09:00 AM">09:00 AM - 10:00 AM</option>
             <option value="10:30 AM">10:30 AM - 11:30 AM</option>
             <option value="02:00 PM">02:00 PM - 03:00 PM</option>
             <option value="04:30 PM">04:30 PM - 05:30 PM</option>
           </select>
-          <span class="error-msg">Please select a time slot.</span>
+          <span id="timeSlot-error" class="error-msg">Please select a time slot.</span>
         </div>
 
         <div class="form-group">
           <label for="reason">Reason for Visit (Min 20 characters)</label>
-          <textarea id="reason" name="reason" class="form-control" rows="4" required minlength="20" placeholder="Please describe your symptoms..."></textarea>
-          <span class="error-msg">Reason must be at least 20 characters long.</span>
+          <textarea id="reason" name="reason" class="form-control" rows="4" required minlength="20" placeholder="Please describe your symptoms..." aria-describedby="reason-error" aria-invalid="false"></textarea>
+          <span id="reason-error" class="error-msg">Reason must be at least 20 characters long.</span>
         </div>
 
         <button type="submit" class="btn btn-primary form-submit-btn">Confirm Appointment</button>
       </form>
     </div>
 
-    <!-- Custom Success Modal (Hidden by default, triggered by JavaScript on success) -->
-    <div id="successModal" class="modal-overlay">
-      <div class="modal-content">
+    <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-content" tabindex="-1">
         <div class="modal-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
-        <h2>Appointment Confirmed!</h2>
+        <h2 id="modalTitle">Appointment Confirmed!</h2>
         <p class="modal-text">Your appointment has been successfully booked. A confirmation email has been dispatched with all details.</p>
         <button id="closeModalBtn" class="btn btn-primary">Done</button>
       </div>
@@ -129,27 +120,23 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       
-      <!-- Column 1: About -->
       <div class="footer-section">
         <h3 class="footer-title">MedCare Clinic</h3>
         <p>Providing compassionate, high-quality multi-specialty healthcare.</p>
       </div>
 
-      <!-- Column 2: Links -->
       <div class="footer-section">
         <h3 class="footer-title">Quick Links</h3>
         <ul class="footer-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="doctors.html">Our Doctors</a></li>
-          <li><a href="bookAppointment.html">Book Appointment</a></li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/pages/doctors.html">Our Doctors</a></li>
+          <li><a href="/pages/bookAppointment.html">Book Appointment</a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Hours -->
       <div class="footer-section">
         <h3 class="footer-title">Working Hours</h3>
         <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
@@ -158,7 +145,6 @@
 
     </div>
     
-    <!-- Copyright Bar -->
     <div class="footer-bottom">
       <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
     </div>

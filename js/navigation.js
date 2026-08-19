@@ -1,8 +1,3 @@
-/* =================================================================
-   MedCare Clinic - Navigation Module (Hamburger Menu & Back To Top)
-   ================================================================ */
-
-// 1. MOBILE NAVIGATION (Hamburger Menu)
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -33,7 +28,6 @@ if (hamburger && navMenu) {
   });
 }
 
-// 2. BACK TO TOP BUTTON
 function debounce(callback, delay = 100) {
   let timeoutId;
   return (...args) => {

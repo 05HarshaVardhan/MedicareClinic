@@ -1,22 +1,15 @@
-/* =================================================================
-   MedCare Clinic - Design Tokens & Base Reset
-   ================================================================ */
-
-/* 1. DESIGN TOKENS */
 :root {
-  /* Color Palette (Light Mode - WCAG 2.1 AA Compliant) */
-  --color-primary: #0369a1;        /* Clinic Blue (4.88:1 contrast with white) */
+  --color-primary: #0369a1;
   --color-primary-hover: #025a8b;
-  --color-secondary: #0f766e;      /* Deep Teal (4.75:1 contrast with white) */
-  --color-accent: #d97706;         /* Warm Amber/Orange (4.5:1 contrast) */
-  --color-bg: #f8fafc;             /* Light Gray Background */
-  --color-surface: #ffffff;        /* Pure White for Cards */
-  --color-text: #1e293b;           /* Dark Slate for reading (16.3:1) */
-  --color-text-muted: #475569;     /* Slate 600 (6.1:1 on white, 5.8:1 on #f8fafc) */
+  --color-secondary: #0f766e;
+  --color-accent: #d97706;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-text-muted: #475569;
   --color-border: #cbd5e1;
-  --color-error: #b91c1c;          /* Form Error Red (5.2:1 contrast) */
+  --color-error: #b91c1c;
 
-  /* Typography */
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -27,7 +20,6 @@
   --font-size-3xl: 2rem;
   --font-size-4xl: 2.5rem;
 
-  /* Spacing & Layout */
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
@@ -41,21 +33,19 @@
   --transition: all 0.3s ease;
 }
 
-/* 2. DARK MODE TOKENS (WCAG 2.1 AA Compliant) */
 [data-theme="dark"] {
-  --color-primary: #38bdf8;        /* Sky 400 (7.2:1 contrast on dark surface) */
+  --color-primary: #38bdf8;
   --color-primary-hover: #7dd3fc;
-  --color-secondary: #2dd4bf;      /* Teal 300 (6.8:1 contrast on dark surface) */
+  --color-secondary: #2dd4bf;
   --color-accent: #fbbf24;
   --color-bg: #0f172a;
   --color-surface: #1e293b;
   --color-text: #f8fafc;
-  --color-text-muted: #cbd5e1;     /* Slate 300 (10.2:1 on dark surface) */
+  --color-text-muted: #cbd5e1;
   --color-border: #334155;
   --color-error: #fca5a5;
 }
 
-/* 3. BASE RESET */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -75,7 +65,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 4. UTILITY CLASSES */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -87,7 +76,6 @@ body {
   padding: 4rem 0;
 }
 
-/* Accessibility Focus Ring */
 :focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;

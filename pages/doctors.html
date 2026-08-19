@@ -4,41 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Doctors - MedCare Clinic</title>
+  <meta name="description" content="Meet MedCare Clinic's multi-specialty medical practitioners. Search and filter specialists across Cardiology, Pediatrics, Neurology, Dermatology, Orthopedics, and Ophthalmology.">
   
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://ui-avatars.com" crossorigin>
-  <!-- FontAwesome Icons for offline-friendly UI elements -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Core Custom Stylesheet -->
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
   
-  <!-- Accessibility feature: Skip to content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- HEADER START -->
   <header>
     <div class="container nav-container">
-      <a href="../index.html" class="logo">
+      <a href="/index.html" class="logo">
         <i class="fas fa-heartbeat" aria-hidden="true"></i> MedCare Clinic
       </a>
       
-      <!-- Mobile Hamburger Menu (Checkbox Hack Target) -->
       <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <i class="fas fa-bars" aria-hidden="true"></i>
       </button>
 
       <ul class="nav-menu">
-        <li><a href="../index.html" class="nav-link">Home</a></li>
-        <li><a href="doctors.html" class="nav-link active">Doctors</a></li>
-        <li><a href="bookAppointment.html" class="nav-link">Book Appointment</a></li>
-        <li><a href="contactUs.html" class="nav-link">Contact Us</a></li>
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/pages/doctors.html" class="nav-link active">Doctors</a></li>
+        <li><a href="/pages/bookAppointment.html" class="nav-link">Book Appointment</a></li>
+        <li><a href="/pages/contactUs.html" class="nav-link">Contact Us</a></li>
       </ul>
 
       <div class="nav-actions">
-        <!-- Light/Dark Mode Segmented Dual-Pill Toggle -->
         <div class="theme-toggle-segmented" role="radiogroup" aria-label="Theme selection">
           <div class="theme-slider" aria-hidden="true"></div>
           <button type="button" class="theme-option active" data-theme-val="light" role="radio" aria-checked="true" aria-label="Light theme">
@@ -53,69 +47,74 @@
       </div>
     </div>
   </header>
-  <!-- HEADER END -->
 
-  <!-- MAIN CONTENT -->
   <main id="main-content" class="container section-padding">
     
-    <!-- Page Title -->
     <div class="page-header">
       <h1 class="section-title">Meet Our Medical Experts</h1>
       <p class="section-subtitle">Browse through our multi-specialty practitioners and filter by name or specialty.</p>
     </div>
 
-    <!-- Search and Filter Section -->
     <div class="filters-container">
       
-      <!-- Search Bar -->
       <div class="search-box">
         <label for="searchInput" class="sr-only">Search doctors</label>
         <input type="text" id="searchInput" class="search-input" placeholder="Search by doctor name or specialty...">
       </div>
 
-      <!-- Filter Chips -->
       <div class="specialty-filters">
-        <p class="filter-label">Filter by Specialty:</p>
-        <div id="specialtyChips" class="filter-chips">
-          <button class="chip active" data-specialty="All">All Specialties</button>
-          <button class="chip" data-specialty="Cardiology">Cardiology</button>
-          <button class="chip" data-specialty="Pediatrics">Pediatrics</button>
-          <button class="chip" data-specialty="Neurology">Neurology</button>
-          <button class="chip" data-specialty="Dermatology">Dermatology</button>
-          <button class="chip" data-specialty="Orthopedics">Orthopedics</button>
-          <button class="chip" data-specialty="Ophthalmology">Ophthalmology</button>
+        <h2 id="specialty-filter-heading" class="filter-label">Filter by Specialty:</h2>
+        <div id="specialtyChips" class="filter-chips" role="group" aria-labelledby="specialty-filter-heading">
+          <button type="button" class="chip active" data-specialty="All" aria-pressed="true">All Specialties</button>
+          <button type="button" class="chip" data-specialty="Cardiology" aria-pressed="false">Cardiology</button>
+          <button type="button" class="chip" data-specialty="Pediatrics" aria-pressed="false">Pediatrics</button>
+          <button type="button" class="chip" data-specialty="Neurology" aria-pressed="false">Neurology</button>
+          <button type="button" class="chip" data-specialty="Dermatology" aria-pressed="false">Dermatology</button>
+          <button type="button" class="chip" data-specialty="Orthopedics" aria-pressed="false">Orthopedics</button>
+          <button type="button" class="chip" data-specialty="Ophthalmology" aria-pressed="false">Ophthalmology</button>
+        </div>
+      </div>
+
+      <div class="day-filters" style="margin-top: 1.5rem;">
+        <h2 id="day-filter-heading" class="filter-label">Filter by Available Day:</h2>
+        <div id="dayChips" class="filter-chips" role="group" aria-labelledby="day-filter-heading">
+          <button type="button" class="chip active" data-day="All" aria-pressed="true">All Days</button>
+          <button type="button" class="chip" data-day="Monday" aria-pressed="false">Monday</button>
+          <button type="button" class="chip" data-day="Tuesday" aria-pressed="false">Tuesday</button>
+          <button type="button" class="chip" data-day="Wednesday" aria-pressed="false">Wednesday</button>
+          <button type="button" class="chip" data-day="Thursday" aria-pressed="false">Thursday</button>
+          <button type="button" class="chip" data-day="Friday" aria-pressed="false">Friday</button>
+          <button type="button" class="chip" data-day="Saturday" aria-pressed="false">Saturday</button>
         </div>
       </div>
 
     </div>
 
-    <!-- Doctors Grid -->
-    <div id="doctorsGrid" class="doctors-grid">
-    </div>
+    <section aria-label="Doctors Directory">
+      <h2 class="sr-only">Our Medical Specialists</h2>
+      <div id="doctorsGrid" class="doctors-grid">
+      </div>
+    </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       
-      <!-- Column 1: About -->
       <div class="footer-section">
         <h3 class="footer-title">MedCare Clinic</h3>
         <p>Providing compassionate, high-quality multi-specialty healthcare.</p>
       </div>
 
-      <!-- Column 2: Links -->
       <div class="footer-section">
         <h3 class="footer-title">Quick Links</h3>
         <ul class="footer-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="doctors.html">Our Doctors</a></li>
-          <li><a href="bookAppointment.html">Book Appointment</a></li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/pages/doctors.html">Our Doctors</a></li>
+          <li><a href="/pages/bookAppointment.html">Book Appointment</a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Hours -->
       <div class="footer-section">
         <h3 class="footer-title">Working Hours</h3>
         <p>Mon - Fri: 8:00 AM - 8:00 PM</p>
@@ -124,7 +123,6 @@
 
     </div>
     
-    <!-- Copyright Bar -->
     <div class="footer-bottom">
       <p>&copy; 2026 MedCare Clinic. All rights reserved.</p>
     </div>

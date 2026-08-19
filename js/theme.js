@@ -1,9 +1,5 @@
-/* =================================================================
-   MedCare Clinic - Theme Module (Dark Mode Toggle)
-   ================================================================ */
-
 const themeOptions = document.querySelectorAll('.theme-option');
-const themeToggleBtn = document.querySelector('.theme-toggle'); // Legacy fallback
+const themeToggleBtn = document.querySelector('.theme-toggle');
 const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
 
 function applyTheme(themeName, savePreference = true) {
@@ -32,7 +28,6 @@ function applyTheme(themeName, savePreference = true) {
   }
 }
 
-// Initial Theme Loader
 const savedTheme = localStorage.getItem('clinic-theme');
 const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -51,7 +46,6 @@ if (systemPrefersDark) {
   });
 }
 
-// Attach Event Listeners
 if (themeOptions.length > 0) {
   themeOptions.forEach(opt => {
     opt.addEventListener('click', () => {

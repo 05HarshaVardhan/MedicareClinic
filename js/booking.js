@@ -1,7 +1,3 @@
-/* =================================================================
-   MedCare Clinic - Booking Form Module
-   ================================================================ */
-
 function initBookingModule() {
   const appointmentForm = document.getElementById('appointmentForm');
   const successModal = document.getElementById('successModal');
@@ -74,14 +70,71 @@ function initBookingModule() {
     return appointmentDateInput.checkValidity();
   }
 
+  let previouslyFocusedElement = null;
+
+  function openModal() {
+    if (!successModal) return;
+    previouslyFocusedElement = document.activeElement;
+    successModal.classList.add('active');
+    
+    const focusable = successModal.querySelector('button, [tabindex="0"]');
+    if (focusable) focusable.focus();
+
+    document.addEventListener('keydown', handleModalKeydown);
+  }
+
+  function closeModal() {
+    if (!successModal) return;
+    successModal.classList.remove('active');
+    document.removeEventListener('keydown', handleModalKeydown);
+    if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
+      previouslyFocusedElement.focus();
+    }
+  }
+
+  function handleModalKeydown(e) {
+    if (!successModal || !successModal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeModal();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusables = Array.from(successModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+      if (focusables.length === 0) return;
+
+      const firstElement = focusables[0];
+      const lastElement = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+
+  function updateControlValidity(control) {
+    const isInvalid = !control.checkValidity();
+    control.classList.toggle('invalid', isInvalid);
+    control.setAttribute('aria-invalid', isInvalid ? 'true' : 'false');
+  }
+
   function updateAppointmentDateState() {
     if (!appointmentDateInput) return;
 
     const isAvailable = validateAppointmentAvailability();
     if (appointmentDateInput.value) {
-      appointmentDateInput.classList.toggle('invalid', !isAvailable);
+      const isInvalid = !isAvailable;
+      appointmentDateInput.classList.toggle('invalid', isInvalid);
+      appointmentDateInput.setAttribute('aria-invalid', isInvalid ? 'true' : 'false');
     } else {
       appointmentDateInput.classList.remove('invalid');
+      appointmentDateInput.setAttribute('aria-invalid', 'false');
     }
   }
 
@@ -112,33 +165,49 @@ function initBookingModule() {
       const formControls = appointmentForm.querySelectorAll('.form-control');
       
       formControls.forEach(control => {
+        updateControlValidity(control);
         if (!control.checkValidity()) {
-          control.classList.add('invalid');
           isValid = false;
-        } else {
-          control.classList.remove('invalid');
         }
         
-        control.addEventListener('input', () => {
-          if (control.checkValidity()) {
-            control.classList.remove('invalid');
-          }
-        });
+        control.addEventListener('input', () => updateControlValidity(control));
       });
       
       if (isValid && successModal) {
-        successModal.classList.add('active');
+        openModal();
         appointmentForm.reset();
       }
     });
   }
 
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => {
-      successModal.classList.remove('active');
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+      const formControls = contactForm.querySelectorAll('.form-control');
+
+      formControls.forEach(control => {
+        updateControlValidity(control);
+        if (!control.checkValidity()) {
+          isValid = false;
+        }
+        control.addEventListener('input', () => updateControlValidity(control));
+      });
+
+      if (isValid) {
+        alert('Thank you for contacting MedCare Clinic! We will get back to you shortly.');
+        contactForm.reset();
+      }
     });
   }
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
 }
+
+window.initBookingModule = initBookingModule;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initBookingModule);

@@ -1,9 +1,5 @@
-/* =================================================================
-   MedCare Clinic - Main JavaScript (Modular Script Loader)
-   ================================================================ */
-
 (function() {
-  const modules = ['theme.js', 'navigation.js', 'doctors.js', 'booking.js', 'locator.js', 'carousel.js'];
+  const modules = ['theme.js', 'navigation.js', 'doctors.js', 'booking.js', 'locator.js', 'carousel.js', 'lazyloader.js', 'router.js'];
   
   const scripts = document.getElementsByTagName('script');
   let basePath = 'js/';
